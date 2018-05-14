@@ -4,8 +4,7 @@
     <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    <a href="https://github.com/cosium/vet">Vet</a> IntelliJ plugin
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -14,11 +13,18 @@
     <depends>com.intellij.modules.lang</depends>
     -->
 
+    <depends>Git4Idea</depends>
+
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
+        <action id="vet.commit-and-vet" class="com.cosium.vet_intellij.CommitAndVetPush" text="Commit and &amp;Vet Push..."
+                description="Commit and Vet">
+            <add-to-group group-id="Vcs.CommitExecutor.Actions" anchor="before"
+                          relative-to-action="Git.Commit.And.Push.Executor"/>
+        </action>
     </actions>
 </idea-plugin>
