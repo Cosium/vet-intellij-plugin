@@ -13,6 +13,12 @@
     <depends>com.intellij.modules.lang</depends>
     -->
 
+    <project-components>
+        <component>
+            <implementation-class>com.cosium.vet_intellij.VetComponent</implementation-class>
+        </component>
+    </project-components>
+
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -21,7 +27,9 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="vet.commit-and-vet" class="com.cosium.vet_intellij.CommitAndVetPush" text="Commit and &amp;Vet Push..."
+        <action id="Vet.Commit.And.Push.Executor"
+                class="com.cosium.vet_intellij.push.CommitAndVetPushExecutorAction"
+                text="Commit and &amp;Vet Push..."
                 description="Commit and Vet">
             <add-to-group group-id="Vcs.CommitExecutor.Actions" anchor="before"
                           relative-to-action="Git.Commit.And.Push.Executor"/>
