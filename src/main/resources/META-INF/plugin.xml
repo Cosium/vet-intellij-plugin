@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.cosium.vet.vet-intellij-plugin</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <name>Vet</name>
+    <vendor email="reda.housnialaoui@cosium.com" url="https://github.com/Cosium">Cosium</vendor>
 
     <description><![CDATA[
     <a href="https://github.com/cosium/vet">Vet</a> IntelliJ plugin
