@@ -28,7 +28,7 @@
     <actions>
         <!-- Add your actions here -->
         <action id="Vet.Commit.And.Push.Executor"
-                class="com.cosium.vet_intellij.push.CommitAndVetPushExecutorAction"
+                class="com.cosium.vet_intellij.commit_and_push.CommitAndVetPushExecutorAction"
                 text="Commit and &amp;Vet Push..."
                 description="Commit and Vet">
             <add-to-group group-id="Vcs.CommitExecutor.Actions" anchor="before"

@@ -2,12 +2,11 @@ package com.cosium.vet_intellij;
 
 import com.cosium.vet.Vet;
 import com.cosium.vet.command.DebugOptions;
-import com.cosium.vet_intellij.push.CommitAndVetPushExecutor;
+import com.cosium.vet_intellij.commit_and_push.CommitAndVetPushExecutor;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vcs.changes.ChangeListManager;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static java.util.Objects.requireNonNull;
@@ -17,18 +16,12 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Reda.Housni-Alaoui
  */
-public class VetComponent implements ProjectComponent {
+public class VetComponent extends Vet implements ProjectComponent {
 
-  private final Vet vet;
+  public static final String DISPLAY_ID = "Vet";
 
   public VetComponent(Project project) {
-    Path path = Paths.get(requireNonNull(project.getBasePath()));
-    vet = new Vet(false, DebugOptions.empty(), path);
-
+    super(false, DebugOptions.empty(), Paths.get(requireNonNull(project.getBasePath())));
     ChangeListManager.getInstance(project).registerCommitExecutor(new CommitAndVetPushExecutor());
-  }
-
-  public Vet vet() {
-    return vet;
   }
 }

@@ -1,8 +1,7 @@
-package com.cosium.vet_intellij.push;
+package com.cosium.vet_intellij.commit_and_push;
 
 import com.intellij.openapi.vcs.changes.CommitExecutor;
 import com.intellij.openapi.vcs.changes.CommitSession;
-import com.intellij.openapi.vcs.changes.actions.BaseCommitExecutorAction;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
