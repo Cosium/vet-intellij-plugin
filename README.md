@@ -3,7 +3,7 @@ IntelliJ plugin for https://github.com/Cosium/vet
 
 ### Build
 
-IntelliJ is not fully booted on JVM 9+. Therefore this plugin must be built using JDK 8.
+IntelliJ is not fully usable on JVM 9+. Therefore this plugin must be built using JDK 8.
 Vet core is compatible Java 8, but built using Java 9 in order to be JLinked.
 
 Consequently, as long as this situation lasts, to save the author mental health, Vet core source must be pulled into the current project using symbolic link.
