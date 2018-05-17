@@ -2,6 +2,8 @@ package com.cosium.vet_intellij.commit_and_push;
 
 import com.cosium.vet.Vet;
 import com.cosium.vet.gerrit.Change;
+import com.cosium.vet_intellij.CreateDialog;
+import com.cosium.vet_intellij.PushDialog;
 import com.cosium.vet_intellij.VetComponent;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
@@ -31,7 +33,7 @@ public class CommitAndVetPushExecutorAction extends BaseCommitExecutorAction {
     if (trackedChange.isPresent()) {
       new PushDialog(project, vet, trackedChange.get()).show();
     } else {
-
+      new CreateDialog(project, vet).show();
     }
   }
 

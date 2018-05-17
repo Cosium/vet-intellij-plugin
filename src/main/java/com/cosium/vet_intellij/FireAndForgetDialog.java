@@ -1,11 +1,9 @@
-package com.cosium.vet_intellij.commit_and_push;
+package com.cosium.vet_intellij;
 
 import com.cosium.vet.Vet;
 import com.cosium.vet.gerrit.Change;
 import com.cosium.vet.gerrit.CodeReviewVote;
-import com.cosium.vet.gerrit.PatchSubject;
 import com.cosium.vet.thirdparty.apache_commons_lang3.StringUtils;
-import com.cosium.vet_intellij.VetComponent;
 import com.intellij.ide.BrowserUtil;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
@@ -15,18 +13,13 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.ValidationInfo;
-import com.intellij.ui.HyperlinkLabel;
-import com.intellij.ui.components.JBCheckBox;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBPanel;
 import com.intellij.ui.components.JBTextField;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
@@ -36,51 +29,27 @@ import static java.util.Optional.ofNullable;
  *
  * @author Reda.Housni-Alaoui
  */
-public class PushDialog extends DialogWrapper {
+public class FireAndForgetDialog extends DialogWrapper {
+
   private final Project project;
   private final Vet vet;
-  private final Change change;
 
   private final JPanel panel;
-
   private final JBTextField codeReviewVote;
-  private final JBCheckBox publishDraftedComments;
-  private final JBCheckBox workInProgress;
-  private final JBTextField patchSetSubject;
 
-  public PushDialog(@Nullable Project project, Vet vet, Change change) {
+  public FireAndForgetDialog(Project project, Vet vet) {
     super(project);
     this.project = project;
     this.vet = requireNonNull(vet);
-    this.change = requireNonNull(change);
 
-    publishDraftedComments = new JBCheckBox();
-    workInProgress = new JBCheckBox();
     codeReviewVote = new JBTextField();
-    patchSetSubject = new JBTextField();
 
     panel = new JBPanel(new GridLayout(0, 2));
-
-    panel.add(new JLabel("Tracked change"));
-    String changeWebUrl = change.getWebUrl();
-    HyperlinkLabel changeWebUrlLabel = new HyperlinkLabel(changeWebUrl);
-    changeWebUrlLabel.setHyperlinkTarget(changeWebUrl);
-    panel.add(changeWebUrlLabel);
-
-    panel.add(new JBLabel("Mark as work in progress"));
-    panel.add(workInProgress);
-
-    panel.add(new JBLabel("Publish drafted comments"));
-    panel.add(publishDraftedComments);
-
     panel.add(new JBLabel("Code review vote"));
     panel.add(codeReviewVote);
 
-    panel.add(new JBLabel("Patch set subject"));
-    panel.add(patchSetSubject);
-
     this.init();
-    this.setTitle("Vet Push Options");
+    this.setTitle("Vet Fire And Forget Options");
     this.setOKButtonText("Push");
     this.setResizable(false);
   }
@@ -89,26 +58,14 @@ public class PushDialog extends DialogWrapper {
   protected void doOKAction() {
     super.doOKAction();
 
-    PatchSubject patchSubject =
-        ofNullable(patchSetSubject.getText())
-            .filter(StringUtils::isNotBlank)
-            .map(PatchSubject::of)
-            .orElse(null);
-    CodeReviewVote vote =
-        ofNullable(codeReviewVote.getText())
+    CodeReviewVote codeReviewVote =
+        ofNullable(this.codeReviewVote.getText())
             .filter(StringUtils::isNotBlank)
             .map(CodeReviewVote::of)
             .orElse(null);
 
     try {
-      vet.pushCommandFactory()
-          .build(
-              publishDraftedComments.isSelected(),
-              workInProgress.isSelected(),
-              patchSubject,
-              false,
-              vote)
-          .execute();
+      Change change = vet.fireAndForgetCommandFactory().build(true, codeReviewVote).execute();
 
       Notification okMessage =
           new Notification(
@@ -117,7 +74,7 @@ public class PushDialog extends DialogWrapper {
               "Pushed to " + change.getWebUrl(),
               NotificationType.INFORMATION);
       okMessage.addAction(
-          new AnAction("Open") {
+          new AnAction("Open change") {
             @Override
             public void actionPerformed(AnActionEvent e) {
               BrowserUtil.browse(change.getWebUrl());
@@ -132,21 +89,18 @@ public class PushDialog extends DialogWrapper {
     }
   }
 
-  @NotNull
+  @Nullable
   @Override
-  protected List<ValidationInfo> doValidateAll() {
-    List<ValidationInfo> validationInfos = new ArrayList<>();
-
-    String codeReviewVoteTxt = codeReviewVote.getText();
-    if (StringUtils.isNotBlank(codeReviewVoteTxt)) {
-      try {
-        CodeReviewVote.of(codeReviewVoteTxt);
-      } catch (Exception e) {
-        validationInfos.add(new ValidationInfo(e.getMessage(), codeReviewVote));
-      }
+  protected ValidationInfo doValidate() {
+    if (!StringUtils.isBlank(codeReviewVote.getText())) {
+      return null;
     }
-
-    return validationInfos;
+    try {
+      CodeReviewVote.of(codeReviewVote.getText());
+      return null;
+    } catch (Exception e) {
+      return new ValidationInfo(e.getMessage(), codeReviewVote);
+    }
   }
 
   @Nullable
