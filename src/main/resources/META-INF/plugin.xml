@@ -1,17 +1,11 @@
 <idea-plugin>
     <id>com.cosium.vet.vet-intellij-plugin</id>
     <name>Vet</name>
-    <vendor email="reda.housnialaoui@cosium.com" url="https://github.com/Cosium">Cosium</vendor>
+    <vendor email="reda.housnialaoui@cosium.com" url="https://github.com/Cosium/vet-intellij-plugin">Cosium</vendor>
 
     <description><![CDATA[
-    <a href="https://github.com/cosium/vet">Vet</a> IntelliJ plugin
+     <a href="https://github.com/cosium/vet">Vet</a> is Gerrit client using pull request workflow.
     ]]></description>
-
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
 
     <project-components>
         <component>
