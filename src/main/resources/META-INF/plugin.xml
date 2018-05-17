@@ -22,11 +22,16 @@
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
+        <action id="Vet.Push" class="com.cosium.vet_intellij.push.PushAction" icon="AllIcons.Vcs.Push"
+                text="Vet Push...">
+            <add-to-group group-id="GitRepositoryActions"
+                          anchor="before"
+                          relative-to-action="Vcs.Push"/>
+        </action>
+
         <action id="Vet.Commit.And.Push.Executor"
                 class="com.cosium.vet_intellij.commit_and_push.CommitAndVetPushExecutorAction"
                 text="Commit and &amp;Vet Push..."

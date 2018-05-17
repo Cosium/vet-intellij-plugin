@@ -55,7 +55,7 @@ public class TrackDialog extends DialogWrapper {
 
     this.init();
     this.setTitle("Vet Track Options");
-    this.setOKButtonText("Track");
+    this.setOKButtonText("Track...");
     this.setResizable(false);
   }
 

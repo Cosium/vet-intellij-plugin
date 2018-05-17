@@ -76,6 +76,7 @@ public class CreateDialog extends DialogWrapper {
     this.init();
     this.setTitle("No Tracked Change");
     this.setResizable(false);
+    this.setOKButtonText("Continue...");
   }
 
   @Override
