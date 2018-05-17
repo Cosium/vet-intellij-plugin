@@ -19,7 +19,7 @@ dependencies {
 
 intellij {
     publish {
-        pluginId 'vet'
+        pluginId 'com.cosium.vet.vet-intellij-plugin'
         username project.property('jetbrainsUsername')
         password project.property('jetbrainsPassword')
     }
