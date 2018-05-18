@@ -92,7 +92,7 @@ public class FireAndForgetDialog extends DialogWrapper {
   @Nullable
   @Override
   protected ValidationInfo doValidate() {
-    if (!StringUtils.isBlank(codeReviewVote.getText())) {
+    if (StringUtils.isBlank(codeReviewVote.getText())) {
       return null;
     }
     try {
