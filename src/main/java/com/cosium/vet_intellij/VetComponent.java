@@ -1,6 +1,7 @@
 package com.cosium.vet_intellij;
 
 import com.cosium.vet.Vet;
+import com.cosium.vet.VetVersion;
 import com.cosium.vet.command.DebugOptions;
 import com.cosium.vet_intellij.commit_and_push.CommitAndVetPushExecutor;
 import com.intellij.openapi.components.ProjectComponent;
@@ -19,6 +20,10 @@ import static java.util.Objects.requireNonNull;
 public class VetComponent extends Vet implements ProjectComponent {
 
   public static final String DISPLAY_ID = "Vet";
+
+  static {
+    VetVersion.setValue("1.0-intellij-plugin");
+  }
 
   public VetComponent(Project project) {
     super(false, DebugOptions.empty(), Paths.get(requireNonNull(project.getBasePath())));
