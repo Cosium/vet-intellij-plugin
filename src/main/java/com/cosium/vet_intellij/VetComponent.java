@@ -22,7 +22,7 @@ public class VetComponent extends Vet implements ProjectComponent {
   public static final String DISPLAY_ID = "Vet";
 
   static {
-    VetVersion.setValue("1.3_intellij-plugin");
+    VetVersion.setValue("1.4_intellij-plugin");
   }
 
   public VetComponent(Project project) {
