@@ -7,6 +7,7 @@ import com.cosium.vet_intellij.commit_and_push.CommitAndVetPushExecutor;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vcs.changes.ChangeListManager;
+import com.intellij.openapi.vcs.impl.CheckinHandlersManager;
 
 import java.nio.file.Paths;
 

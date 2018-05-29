@@ -16,6 +16,7 @@
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <checkinHandlerFactory implementation="com.cosium.vet_intellij.commit_and_push.CommitNotifier"/>
     </extensions>
 
     <actions>
