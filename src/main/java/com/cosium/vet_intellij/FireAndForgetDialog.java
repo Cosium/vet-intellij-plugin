@@ -108,4 +108,10 @@ public class FireAndForgetDialog extends DialogWrapper {
   protected JComponent createCenterPanel() {
     return panel;
   }
+
+  @Nullable
+  @Override
+  public JComponent getPreferredFocusedComponent() {
+    return codeReviewVote;
+  }
 }
