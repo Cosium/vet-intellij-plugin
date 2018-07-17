@@ -22,10 +22,6 @@ public class VetComponent extends Vet implements ProjectComponent {
 
   public static final String DISPLAY_ID = "Vet";
 
-  static {
-    VetVersion.setValue("1.8_intellij-plugin");
-  }
-
   public VetComponent(Project project) {
     super(false, DebugOptions.empty(), Paths.get(requireNonNull(project.getBasePath())));
     ChangeListManager.getInstance(project).registerCommitExecutor(new CommitAndVetPushExecutor());
