@@ -3,7 +3,7 @@ package com.cosium.vet_intellij;
 import com.cosium.vet.Vet;
 import com.cosium.vet.gerrit.Change;
 import com.cosium.vet.gerrit.CodeReviewVote;
-import com.cosium.vet.gerrit.PatchSubject;
+import com.cosium.vet.gerrit.PatchsetSubject;
 import com.cosium.vet.thirdparty.apache_commons_lang3.StringUtils;
 import com.intellij.ide.BrowserUtil;
 import com.intellij.notification.Notification;
@@ -88,10 +88,10 @@ public class PushDialog extends DialogWrapper {
   protected void doOKAction() {
     super.doOKAction();
 
-    PatchSubject patchSubject =
+    PatchsetSubject patchSubject =
         ofNullable(patchSetSubject.getText())
             .filter(StringUtils::isNotBlank)
-            .map(PatchSubject::of)
+            .map(PatchsetSubject::of)
             .orElse(null);
     CodeReviewVote vote =
         ofNullable(codeReviewVote.getText())
