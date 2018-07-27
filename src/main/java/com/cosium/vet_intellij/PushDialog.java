@@ -105,7 +105,6 @@ public class PushDialog extends DialogWrapper {
               publishDraftedComments.isSelected(),
               workInProgress.isSelected(),
               patchSubject,
-              false,
               vote)
           .execute();
 
