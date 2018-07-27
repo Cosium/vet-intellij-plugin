@@ -13,6 +13,7 @@
         </component>
     </project-components>
 
+    <depends>com.intellij.modules.vcs</depends>
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
