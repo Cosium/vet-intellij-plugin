@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.3.12'
+    id 'org.jetbrains.intellij' version '0.4.9'
 }
 
 group 'com.cosium.vet'
@@ -18,11 +18,13 @@ dependencies {
 }
 
 intellij {
-    publish {
-        pluginId 'com.cosium.vet.vet-intellij-plugin'
-        username project.property('jetbrainsUsername')
-        password project.property('jetbrainsPassword')
-    }
     version '2019.1'
     plugins 'git4idea'
+    pluginName 'Vet'
+    updateSinceUntilBuild false
+}
+
+publishPlugin {
+    username project.property('jetbrainsUsername')
+    password project.property('jetbrainsPassword')
 }
