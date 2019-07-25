@@ -7,6 +7,8 @@
      <a href="https://github.com/cosium/vet">Vet</a> is a Gerrit client using pull request workflow.
     ]]></description>
 
+    <idea-version since-build="181"/>
+
     <project-components>
         <component>
             <implementation-class>com.cosium.vet_intellij.VetComponent</implementation-class>
